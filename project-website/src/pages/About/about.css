@@ -1,0 +1,13 @@
+.main_container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    scroll-behavior: auto;
+    padding: 10px 10px;
+}
+
+.sub_container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: block;
+}
