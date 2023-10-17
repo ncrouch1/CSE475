@@ -30,27 +30,25 @@ void loop() {
   if (IMU.accelerationAvailable()) {
     IMU.readAcceleration(Ax, Ay, Az);
 
-    Serial.println(millis());
-    Serial.println("A");
+    Serial.print(millis());
+    Serial.print(',');
     Serial.print(Ax);
     Serial.print(',');
     Serial.print(Ay);
     Serial.print(',');
-    Serial.println(Az);
-    Serial.println();
+    Serial.print(Az);
+    Serial.print(',');
   } else {
     Serial.println("Failed to read data from Accelerometer");
   }
 
   if (IMU.gyroscopeAvailable()) {
     IMU.readGyroscope(Gx, Gy, Gz);
-    
-    Serial.println("G");
     Serial.print(Gx);
     Serial.print(',');
     Serial.print(Gy);
     Serial.print(',');
-    Serial.println(Gz);
+    Serial.print(Gz);
     Serial.println();
   } else {
     Serial.println("Failed to read data from Gyroscope");
