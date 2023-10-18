@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity
 import java.io.FileOutputStream
 import java.io.File
 import android.util.Log
+import android.widget.TextClock
+import android.widget.TextView
 
 import com.felhr.usbserial.*
 import java.util.Date
@@ -23,6 +25,8 @@ class MainActivity : AppCompatActivity() {
 
     private val MYPERMISSIONSREQUESTWRITEEXTERNALSTORAGE = 123
     private val debug = true
+
+    // throw away change
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -33,6 +37,8 @@ class MainActivity : AppCompatActivity() {
         var fos: FileOutputStream? = null
         var serialDevice: UsbSerialDevice? = null
 
+        val recordingIndicator = findViewById<TextView>(R.id.isRecording)
+        recordingIndicator.text = "Not Recording"
         val startRecordingButton = findViewById<Button>(R.id.startRecordingButton)
         startRecordingButton.setOnClickListener {
             val devices = manager.deviceList
@@ -57,6 +63,7 @@ class MainActivity : AppCompatActivity() {
                             fos = FileOutputStream(File(filesDir,filename))
                             if (debug)
                                 Log.e("serial", "Created serial and fos")
+                                recordingIndicator.text = "Recording"
                             break
                         }
 
@@ -92,6 +99,7 @@ class MainActivity : AppCompatActivity() {
                 fos!!.close()
             if (debug)
                 Log.w("stop", "stop button was pressed")
+            recordingIndicator.text = "Not Recording"
         }
     }
 
